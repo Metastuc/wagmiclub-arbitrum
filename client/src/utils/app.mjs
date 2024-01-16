@@ -5,7 +5,7 @@ var userProfile;
 
 const baseAPIURL = "https://wagmi-backend.up.railway.app/";
 
-const badgeContractAddress = "0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3";
+const badgeContractAddress = "0xb0a800B22A5F624b9AE4946B85b45bff50e79aA3";
 const badgeABI = [
 	{
 		inputs: [
