@@ -20,6 +20,10 @@ module.exports = {
     viction: {
       url: "https://rpc-testnet.viction.xyz",
       accounts: [process.env.PRIVATE_KEY]
+    },
+    Arbitrum: {
+      url: "https://arbitrum-sepolia.blockpi.network/v1/rpc/public",
+      accounts: [process.env.PRIVATE_KEY]
     }
   }
 };

@@ -5,9 +5,7 @@ async function main() {
   const uri = "Wagmi Club";
   const gasLimit = 100_000_00n;
 
-  const medals = await hre.ethers.deployContract("Medal", [uri], {
-    gasLimit: gasLimit
-  });
+  const medals = await hre.ethers.deployContract("Medal", [uri]);
 
   await medals.waitForDeployment();
 
