@@ -1,14 +1,9 @@
 "use client";
 
-import axios from "axios";
-import Link from "next/link";
-import { useEffect } from "react";
-import { useAccount } from "wagmi";
-import { useRouter } from "next/navigation";
-import { ConnectKitButton } from "connectkit";
 import { DESKTOP_NAV_LINKS } from "@/assets/data";
 import { Logo, Menu } from "@/components";
-import { Profile } from "@/assets/icons";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import "./index.scss";
 
 function RenderNavLinks() {

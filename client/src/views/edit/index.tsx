@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
-import { useFormik } from "formik";
-import { Details, Socials } from "@/components";
 import { EDIT_SCHEMA } from "@/assets/data";
+import { Details, Socials } from "@/components";
 import { signUp } from "@/utils/app.mjs";
-import { useAccount } from "wagmi";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
+import { useFormik } from "formik";
+import { useEffect } from "react";
 
 import "./index.scss";
 
@@ -22,7 +22,7 @@ interface FormValues {
 }
 
 export const FormField = ({ activeTab }: { activeTab: string }) => {
-	const { address, isConnected } = useAccount();
+	const { address, isConnected } = useWeb3ModalAccount();
 
 	const initialValues = {
 		account: activeTab,
