@@ -5,7 +5,7 @@ var userProfile;
 
 const baseAPIURL = "https://wagmi-backend.up.railway.app/";
 
-const badgeContractAddress = "0xb0a800B22A5F624b9AE4946B85b45bff50e79aA3";
+const badgeContractAddress = "0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3";
 const badgeABI = [
 	{
 		inputs: [
@@ -204,16 +204,7 @@ export const mintBadge = async (mintBody) => {
 
 		const data = await response.json();
 
-		const contract = new ethers.Contract(
-			badgeContractAddress,
-			badgeABI,
-			signer,
-		);
-		const TX = await contract.mint(mintBody.receiver);
-		const receipt = await TX.wait();
-		console.log("created", receipt);
-
-		console.log("Minted Successfully", data.response, receipt);
+		console.log("Minted Successfully", data.response);
 	} catch (error) {
 		console.log(error);
 	}

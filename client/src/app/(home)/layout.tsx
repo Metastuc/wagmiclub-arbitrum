@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
-import { Web3Auth } from "@/hooks";
+import { Web3Modal } from "@/hooks";
 import "@/styles/main.scss";
+import { ReactNode } from "react";
 
 export const metadata = {
 	title: "WagmiClub",
@@ -11,9 +11,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
 			<body className={`container`}>
-				<Web3Auth>
+				<Web3Modal>
 					<section>{children}</section>
-				</Web3Auth>
+				</Web3Modal>
 			</body>
 		</html>
 	);

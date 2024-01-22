@@ -1,54 +1,31 @@
 "use client";
 
-import React, { FC, ReactNode } from "react";
-import { polygon, polygonMumbai } from "viem/chains";
-import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-import { useShutTheFuckUpAboutENS } from "./useShutTheFuckUpAboutENS";
-import { WagmiConfig, createConfig, Chain } from "wagmi";
+import { createWeb3Modal, defaultConfig } from "@web3modal/ethers/react";
+import { FC, ReactNode } from "react";
+
+import { arbitrum_sepolia } from "@/assets/data/chains";
 
 interface Props {
 	children: ReactNode;
 }
 
-const viction = {
-	id: 89,
-	name: 'Viction Testnet',
-	network: 'viction testnet',
-	nativeCurrency: {
-	  decimals: 18,
-	  name: 'Viction',
-	  symbol: 'VIC',
-	},
-	rpcUrls: {
-	  public: { http: ['https://rpc-testnet.viction.xyz'] },
-	  default: { http: ['https://rpc-testnet.viction.xyz'] },
-	},
-	blockExplorers: {
-	  etherscan: { name: 'TomoScan', url: 'https://testnet.tomoscan.io' },
-	  default: { name: 'TomoScan', url: 'https://testnet.tomoscan.io' },
-	},
-}
+const chains = [arbitrum_sepolia];
+const projectId = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!;
 
-const chains = [viction];
-
-const Web3Auth: FC<Props> = ({ children }) => {
-	useShutTheFuckUpAboutENS();
-
-	const config = createConfig(
-		getDefaultConfig({
-			alchemyId: process.env.NEXT_PUBLIC_ALCHEMY_ID,
-			walletConnectProjectId:
-				process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
-			appName: "WAGMI Club",
-			chains,
-		}),
-	);
-
-	return (
-		<WagmiConfig config={config}>
-			<ConnectKitProvider>{children}</ConnectKitProvider>
-		</WagmiConfig>
-	);
+const metadata = {
+	name: "WAGMI Club",
+	description: "Club with the Magic Badge",
+	url: "https://mywebsite.com",
+	icons: ["https://avatars.mywebsite.com/"],
 };
 
-export { Web3Auth };
+createWeb3Modal({
+	ethersConfig: defaultConfig({ metadata, enableEmail: true }),
+	defaultChain: chains[0],
+	projectId,
+	chains,
+});
+
+export const Web3Modal: FC<Props> = ({ children }) => {
+	return children;
+};

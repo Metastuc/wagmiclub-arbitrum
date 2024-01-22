@@ -51,6 +51,8 @@ export const FormField = ({ activeTab }: { activeTab: string }) => {
 		onSubmit: async (values) => {
 			try {
 				await signUp(values, address);
+				console.log(values);
+				
 			} catch (error) {
 				console.log(error);
 			}

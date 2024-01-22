@@ -51,7 +51,7 @@ function ListItem({ title, to }: { title: string; to: string }) {
 function RenderLoginButton() {
 	return (
 		<>
-			<ConnectKitButton.Custom>
+			{/* <ConnectKitButton.Custom>
 				{({ isConnected, show, truncatedAddress }) => (
 					<li
 						onClick={() => {
@@ -71,27 +71,27 @@ function RenderLoginButton() {
 						)}
 					</li>
 				)}
-			</ConnectKitButton.Custom>
+			</ConnectKitButton.Custom> */}
 		</>
 	);
 }
 
 export const PrimaryNav = () => {
 	const router = useRouter();
-	const { address, isConnected } = useAccount();
+	// const { address, isConnected } = useAccount();
 
-	const baseAPIURL = process.env.NEXT_PUBLIC_API_URL;
+	// const baseAPIURL = process.env.NEXT_PUBLIC_API_URL;
 
-	useEffect(() => {
-		isConnected &&
-			(async () => {
-				const { exists } = (
-					await axios.get(`${baseAPIURL}checkUser/${address}`)
-				).data;
+	// useEffect(() => {
+	// 	isConnected &&
+	// 		(async () => {
+	// 			const { exists } = (
+	// 				await axios.get(`${baseAPIURL}checkUser/${address}`)
+	// 			).data;
 
-				// !exists && router.replace("/profile/edit");
-			})();
-	}, [isConnected]);
+	// 			// !exists && router.replace("/profile/edit");
+	// 		})();
+	// }, [isConnected]);
 
 	return (
 		<nav className="primaryNav">

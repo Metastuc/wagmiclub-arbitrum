@@ -12,7 +12,7 @@ import "./index.scss";
 
 export const Menu = () => {
 	const router = useRouter();
-	const { address, isConnected } = useAccount();
+	// const { address, isConnected } = useAccount();
 	const { status: isMenuActive, toggleStatus: setIsMenuActive } = useToggle();
 
 	const baseAPIURL = process.env.NEXT_PUBLIC_API_URL;
@@ -23,16 +23,16 @@ export const Menu = () => {
 		document.body.style.overflowY = scroll;
 	}, [isMenuActive]);
 
-	useEffect(() => {
-		isConnected &&
-			(async () => {
-				const { exists } = (
-					await axios.get(`${baseAPIURL}checkUser/${address}`)
-				).data;
+	// useEffect(() => {
+	// 	isConnected &&
+	// 		(async () => {
+	// 			const { exists } = (
+	// 				await axios.get(`${baseAPIURL}checkUser/${address}`)
+	// 			).data;
 
-				!exists && router.replace("/profile/edit");
-			})();
-	}, [isConnected]);
+	// 			!exists && router.replace("/profile/edit");
+	// 		})();
+	// }, [isConnected]);
 
 	return (
 		<section className="menu">
