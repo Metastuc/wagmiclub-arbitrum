@@ -21,13 +21,15 @@
     }
 
     #login {
-        @include flex($j: space-between);
+        @include flex($j: flex-start, $a: flex-end);
         width: 100%;
+        gap: .25rem;
 
         img {
             border-radius: 50%;
-            @include equal(1rem);
+            @include equal(1.5rem);
             @include flex;
+            border: .0625rem solid white;
         }
     }
 }

@@ -7,37 +7,29 @@ import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
 import Link from "next/link";
 import "./index.scss";
 
-function renderConnectButton() {
-	const { open } = useWeb3Modal();
-	const { address, chainId, isConnected } = useWeb3ModalAccount();
-
-	return (
-		<>
-			<li
-				onClick={() => open()}
-				id="login"
-			>
-				{isConnected ? (
-					<>
-						<span>{truncateWalletAddress(address!)}</span>
-
-						<img
-							src="/defi_pfp.jpg"
-							alt=""
-						/>
-					</>
-				) : (
-					"Login"
-				)}
-			</li>
-		</>
-	);
-}
-
 const MenuModal = ({ onClose }: { onClose: () => void }) => {
+	const { open } = useWeb3Modal();
+	const { address, isConnected } = useWeb3ModalAccount();
+
 	return (
 		<div className="content__wrapper">
 			<ul className="navigation">
+				{isConnected && (
+					<>
+						<li
+							id="login"
+							onClick={() => open({ view: "Account" })}
+						>
+							<img
+								src="/defi_pfp.jpg"
+								alt=""
+							/>
+
+							<span>{truncateWalletAddress(address!)}</span>
+						</li>
+					</>
+				)}
+
 				{DESKTOP_NAV_LINKS.map((item) => {
 					const {
 						id,
@@ -54,7 +46,7 @@ const MenuModal = ({ onClose }: { onClose: () => void }) => {
 					);
 				})}
 
-				{renderConnectButton()}
+				{!isConnected && <li onClick={() => open()}>Login</li>}
 			</ul>
 
 			{/* Search input */}
