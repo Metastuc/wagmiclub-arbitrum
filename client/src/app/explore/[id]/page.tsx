@@ -1,7 +1,6 @@
+import { getMessage, medalAction } from "@/utils/app.mjs";
 import { FC } from "react";
 import "./page.scss";
-import { medalAction, getMessage } from "@/utils/app.mjs";
-
 
 interface props {
 	id?: number;
@@ -52,7 +51,7 @@ export const MedalDetails: FC<props> = ({
 		} catch (error) {
 			console.log(error);
 		}
-	}
+	};
 
 	const getButtonMessage = () => {
 		try {
@@ -61,7 +60,7 @@ export const MedalDetails: FC<props> = ({
 		} catch (error) {
 			console.error(error);
 		}
-	}
+	};
 
 	return (
 		<section className={group}>
@@ -130,9 +129,9 @@ export const MedalDetails: FC<props> = ({
 					</div>
 
 					<div className={`${group}__row`}>
-					<button onClick={async () => await handleButton()}>
-  						{getButtonMessage()}
-					</button>
+						<button onClick={async () => await handleButton()}>
+							{getButtonMessage()}
+						</button>
 					</div>
 				</div>
 			</div>

@@ -4,6 +4,15 @@ export const DEPLOYMENT_CHAINS = [
 	{
 		id: 0,
 		value: {
+			image: "arbitrum.png",
+			title: "Arbitrum",
+			utility: "Arbitrum",
+			bgColor: "",
+		},
+	},
+	{
+		id: 1,
+		value: {
 			image: "viction-small.jpg",
 			title: "Viction",
 			utility: "Viction",
@@ -11,7 +20,7 @@ export const DEPLOYMENT_CHAINS = [
 		},
 	},
 	{
-		id: 1,
+		id: 2,
 		value: {
 			image: "luksoIcon.png",
 			title: "Lukso",
@@ -20,7 +29,7 @@ export const DEPLOYMENT_CHAINS = [
 		},
 	},
 	{
-		id: 2,
+		id: 3,
 		value: {
 			icon: Sepolia,
 			title: "Eth Sepolia",
@@ -29,7 +38,7 @@ export const DEPLOYMENT_CHAINS = [
 		},
 	},
 	{
-		id: 3,
+		id: 4,
 		value: {
 			image: "polygon.jpg",
 			title: "Polygon Mumbai",
@@ -38,7 +47,7 @@ export const DEPLOYMENT_CHAINS = [
 		},
 	},
 	{
-		id: 4,
+		id: 5,
 		value: {
 			icon: BNB,
 			utility: "BSC Testnet",

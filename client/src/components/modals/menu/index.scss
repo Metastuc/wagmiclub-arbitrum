@@ -20,11 +20,12 @@
         }
     }
 
-    #login>span {
-        @include flex;
-        gap: .25rem;
+    #login {
+        @include flex($j: space-between);
+        width: 100%;
 
-        i {
+        img {
+            border-radius: 50%;
             @include equal(1rem);
             @include flex;
         }

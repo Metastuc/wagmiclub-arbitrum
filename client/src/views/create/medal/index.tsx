@@ -59,7 +59,7 @@ export const Medal = ({ group }: { group: string }) => {
 					setFieldValue={setFieldValue}
 					error={errors.deployChain}
 					touched={touched.deployChain}
-					selectedValue="Viction"
+					selectedValue="Arbitrum"
 				/>
 
 				{/* File Upload component */}

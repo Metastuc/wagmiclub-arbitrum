@@ -1,71 +1,31 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
-import { ConnectKitButton } from "connectkit";
 import { DESKTOP_NAV_LINKS } from "@/assets/data";
-import { Profile, Search } from "@/assets/icons";
+import { Search } from "@/assets/icons";
+import { truncateWalletAddress } from "@/utils";
+import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
+import Link from "next/link";
 import "./index.scss";
 
-import { truncateWalletAddress } from "@/utils";
-
-import {
-	useWeb3Modal,
-	useWeb3ModalState,
-	useWeb3ModalAccount,
-} from "@web3modal/ethers/react";
-
-// import { useWeb3Modal } from '@web3modal/ethers/react'
-
 function renderConnectButton() {
-	const { open, close } = useWeb3Modal();
-	// const { selectedNetworkId, open: stateOpen } = useWeb3ModalState();
+	const { open } = useWeb3Modal();
 	const { address, chainId, isConnected } = useWeb3ModalAccount();
 
-	// console.log({ selectedNetworkId, stateOpen });
-
-	console.log({
-		address,
-		chainId,
-		isConnected,
-	});
-
 	return (
-		// <>
-		// 	<li
-		// 		onClick={() => open()}
-		// 		id="login"
-		// 	>
-		// 		{/* {isConnected ? (
-		// 			<span>
-		// 				<i>
-		// 					<Profile />
-		// 				</i>
-		// 				{truncatedAddress}
-		// 			</span>
-		// 		) : (
-		// 			"Login"
-		// 		)} */}
-		// 		Login
-		// 	</li>
-		// </>
-
-		// <>
-		// 	<w3m-button />
-		// </>
-
 		<>
 			<li
 				onClick={() => open()}
 				id="login"
 			>
 				{isConnected ? (
-					<span>
-						<i>
-							<Profile />
-						</i>
-						{truncateWalletAddress(address!)}
-					</span>
+					<>
+						<span>{truncateWalletAddress(address!)}</span>
+
+						<img
+							src="/defi_pfp.jpg"
+							alt=""
+						/>
+					</>
 				) : (
 					"Login"
 				)}
@@ -93,29 +53,6 @@ const MenuModal = ({ onClose }: { onClose: () => void }) => {
 						</li>
 					);
 				})}
-
-				{/* <ConnectKitButton.Custom>
-					{({ isConnected, show, truncatedAddress }) => (
-						<li
-							onClick={() => {
-								show!();
-								onClose();
-							}}
-							id="login"
-						>
-							{isConnected ? (
-								<span>
-									<i>
-										<Profile />
-									</i>
-									{truncatedAddress}
-								</span>
-							) : (
-								"Login"
-							)}
-						</li>
-					)}
-				</ConnectKitButton.Custom> */}
 
 				{renderConnectButton()}
 			</ul>

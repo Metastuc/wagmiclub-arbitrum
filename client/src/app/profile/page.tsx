@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useAccount } from "wagmi";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import Link from "next/link";
 import {
 	Actions,
@@ -72,7 +72,7 @@ interface UserProfileData {
 const Profile = () => {
 	const group = "profile";
 
-	const { address } = useAccount();
+	const { address } = useWeb3ModalAccount();
 
 	const baseApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -85,6 +85,17 @@ const Profile = () => {
 		if (!data || error) return;
 		setProfile(data as any);
 	}, [data, error]);
+
+	// useEffect(() => {
+	// 	isConnected &&
+	// 		(async () => {
+	// 			const { exists } = (
+	// 				await axios.get(`${baseAPIURL}checkUser/${address}`)
+	// 			).data;
+
+	// 			!exists && router.replace("/profile/edit");
+	// 		})();
+	// }, [isConnected]);
 
 	console.log({ profile });
 

@@ -1,8 +1,8 @@
-import { ORGANIZATION_MEDALS } from "@/assets/data";
 import { MedalDetails } from "@/app/explore/[id]/page";
-import { useAccount } from "wagmi";
-import { useFetch } from "@/hooks/useFetch";
+import { ORGANIZATION_MEDALS } from "@/assets/data";
 import { Badge } from "@/components";
+import { useFetch } from "@/hooks/useFetch";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import "./index.scss";
 
 export const RenderOrgMedals = function ({ group }: { group: string }) {
@@ -28,7 +28,7 @@ export const RenderOrgMedals = function ({ group }: { group: string }) {
 };
 export const OnChain = ({ group }: { group: string }) => {
 	const baseApiUrl = process.env.NEXT_PUBLIC_API_URL;
-	const { address, isConnected } = useAccount();
+	const { address, isConnected } = useWeb3ModalAccount();
 	const API = `${baseApiUrl}getAllMedals/${address}`;
 
 	const { data, loading, error } = useFetch({ url: API });

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useDisconnect } from "wagmi";
+import { useDisconnect } from "@web3modal/ethers/react";
 import Link from "next/link";
 import "./index.scss";
 
