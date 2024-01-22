@@ -10,9 +10,11 @@ import {
 	ProfileMedals,
 	TrustScores,
 } from "@/components";
-import { useFetch } from "@/hooks";
+import { Web3Modal, useFetch } from "@/hooks";
 import { X } from "@/assets/icons";
 import "./page.scss";
+
+import { useWeb3Modal } from "@web3modal/ethers/react";
 
 interface Medal {
 	id: number;
@@ -72,7 +74,9 @@ interface UserProfileData {
 const Profile = () => {
 	const group = "profile";
 
-	const { address } = useWeb3ModalAccount();
+	const { address, isConnected } = useWeb3ModalAccount();
+
+	console.log({ address, isConnected });
 
 	const baseApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
@@ -98,6 +102,8 @@ const Profile = () => {
 	// }, [isConnected]);
 
 	console.log({ profile });
+
+	const { open } = useWeb3Modal();
 
 	return (
 		<section className={`${group}`}>

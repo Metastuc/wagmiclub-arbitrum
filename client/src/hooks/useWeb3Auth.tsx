@@ -19,11 +19,18 @@ const metadata = {
 	icons: ["https://avatars.mywebsite.com/"],
 };
 
+const ethersConfig = defaultConfig({
+	metadata,
+	enableEmail: true,
+	defaultChainId: chains[0].chainId,
+	rpcUrl: `https://sepolia-rollup.arbitrum.io/rpc`,
+});
+
 createWeb3Modal({
-	ethersConfig: defaultConfig({ metadata, enableEmail: true }),
-	defaultChain: chains[0],
-	projectId,
 	chains,
+	projectId,
+	ethersConfig,
+	enableAnalytics: true,
 });
 
 export const Web3Modal: FC<Props> = ({ children }) => {
