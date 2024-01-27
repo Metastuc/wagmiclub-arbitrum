@@ -1,7 +1,7 @@
-import { ReactNode } from "react";
 import { SecondaryNav } from "@/components";
 import { BreakpointCheck, Web3Modal } from "@/hooks";
 import "@/styles/main.scss";
+import { ReactNode } from "react";
 
 export const metadata = {
 	title: "Profile - WagmiClub",

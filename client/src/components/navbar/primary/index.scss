@@ -83,13 +83,22 @@
         }
 
 
-        #login>span {
-            @include flex;
+
+        #login {
+            @include flex($j: flex-start, $a: flex-end);
+            width: 100%;
             gap: .25rem;
 
-            i {
-                @include equal(1rem);
+            img {
+                border-radius: 50%;
+                @include equal(1.5rem);
                 @include flex;
+                border: .0625rem solid white;
+            }
+
+            span {
+                @include flex;
+                gap: .25rem;
             }
         }
 

@@ -24,6 +24,9 @@ const ethersConfig = defaultConfig({
 	enableEmail: true,
 	defaultChainId: chains[0].chainId,
 	rpcUrl: `https://sepolia-rollup.arbitrum.io/rpc`,
+	enableEIP6963: true,
+	enableInjected: true,
+	enableCoinbase: true,
 });
 
 createWeb3Modal({
@@ -31,6 +34,7 @@ createWeb3Modal({
 	projectId,
 	ethersConfig,
 	enableAnalytics: true,
+	defaultChain: arbitrum_sepolia,
 });
 
 export const Web3Modal: FC<Props> = ({ children }) => {

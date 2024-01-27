@@ -30,9 +30,13 @@
         >* {
             width: 100%;
         }
+
+        p {
+            text-align: center;
+        }
     }
 
-    &__socials{
+    &__socials {
         border: 1px solid rebeccapurple;
         @include flex;
         gap: 2rem;

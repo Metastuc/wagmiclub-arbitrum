@@ -1,20 +1,21 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useWeb3ModalAccount } from "@web3modal/ethers/react";
-import Link from "next/link";
+import { X } from "@/assets/icons";
 import {
 	Actions,
 	Bio,
+	LoadingCloud,
 	ProfileBadges,
 	ProfileMedals,
 	TrustScores,
 } from "@/components";
-import { Web3Modal, useFetch } from "@/hooks";
-import { X } from "@/assets/icons";
+import { useUserStore } from "@/hooks";
+import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
+import axios from "axios";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import "./page.scss";
-
-import { useWeb3Modal } from "@web3modal/ethers/react";
 
 interface Medal {
 	id: number;
@@ -73,49 +74,73 @@ interface UserProfileData {
 
 const Profile = () => {
 	const group = "profile";
+	const router = useRouter();
+	const { setUserName, setUserTitle } = useUserStore();
 
 	const { address, isConnected } = useWeb3ModalAccount();
-
-	console.log({ address, isConnected });
+	const { open } = useWeb3Modal();
 
 	const baseApiUrl = process.env.NEXT_PUBLIC_API_URL;
 
-	const URL = `${baseApiUrl}getUserProfileAddress/${address}`;
-
-	const { data, loading, error } = useFetch({ url: URL });
 	const [profile, setProfile] = useState<UserProfileData | null>(null);
+	const [loading, setLoading] = useState<boolean>(true);
 
 	useEffect(() => {
-		if (!data || error) return;
-		setProfile(data as any);
-	}, [data, error]);
+		isConnected &&
+			(async () => {
+				// Check if user exists
+				const { exists } = (
+					await axios.get(`${baseApiUrl}checkUser/${address}`)
+				).data;
 
-	// useEffect(() => {
-	// 	isConnected &&
-	// 		(async () => {
-	// 			const { exists } = (
-	// 				await axios.get(`${baseAPIURL}checkUser/${address}`)
-	// 			).data;
+				!exists && router.replace("/profile/edit");
 
-	// 			!exists && router.replace("/profile/edit");
-	// 		})();
-	// }, [isConnected]);
+				// fetch user profile
+				const response = (
+					await axios.get(
+						`${baseApiUrl}getUserProfileAddress/${address}`,
+					)
+				).data;
 
-	console.log({ profile });
-
-	const { open } = useWeb3Modal();
+				setProfile(response);
+				setLoading(false);
+				setUserName(response.bio.name);
+				setUserTitle(response.bio.profession);
+			})();
+	}, [isConnected, address, router, baseApiUrl, setUserName, setUserTitle]);
 
 	return (
 		<section className={`${group}`}>
 			<section className={`${group}__wrapper`}>
 				{/* Conditional rendering based on loading state */}
-				{loading && <p>Loading profile...</p>}
+				{loading && (
+					<>
+						<LoadingCloud />
+						{!isConnected && (
+							<p>
+								Cannot load profile <br />
+								Please{" "}
+								<button
+									style={{
+										paddingInline: ".25rem",
+										borderRadius: ".25rem",
+									}}
+									onClick={() => open()}
+								>
+									connect
+								</button>{" "}
+								your wallet
+								<br />
+							</p>
+						)}
+					</>
+				)}
 
 				{/* Conditional rendering based on error state */}
-				{error && <p>Error loading data: {error.message}</p>}
+				{/* {error && <p>Error loading data: {error.message}</p>} */}
 
 				{/* Render other components only if data is available and no error occurred */}
-				{profile && !error && (
+				{profile && (
 					<>
 						<Actions group={`${group}__actions`} />
 

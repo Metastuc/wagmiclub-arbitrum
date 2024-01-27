@@ -2,11 +2,17 @@
 
 import { DESKTOP_NAV_LINKS } from "@/assets/data";
 import { Logo, Menu } from "@/components";
+import { useHydration, useUserStore } from "@/hooks";
+import { truncateWalletAddress } from "@/utils";
+import { useWeb3Modal, useWeb3ModalAccount } from "@web3modal/ethers/react";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import "./index.scss";
 
 function RenderNavLinks() {
+	const hydration = useHydration();
 	return (
 		<>
 			<ul className="primaryNav__desktop">
@@ -26,7 +32,7 @@ function RenderNavLinks() {
 				})}
 
 				{/* Login Button */}
-				<RenderLoginButton />
+				{hydration && <RenderLoginButton />}
 			</ul>
 		</>
 	);
@@ -44,49 +50,64 @@ function ListItem({ title, to }: { title: string; to: string }) {
 }
 
 function RenderLoginButton() {
+	const { open } = useWeb3Modal();
+	const { address, isConnected } = useWeb3ModalAccount();
+
 	return (
 		<>
-			{/* <ConnectKitButton.Custom>
-				{({ isConnected, show, truncatedAddress }) => (
-					<li
-						onClick={() => {
-							show!();
-						}}
-						id="login"
-					>
-						{isConnected ? (
-							<span>
-								<i>
-									<Profile />
-								</i>
-								{truncatedAddress}
-							</span>
-						) : (
-							"Login"
-						)}
-					</li>
+			<li
+				onClick={() => {
+					open();
+				}}
+				id="login"
+			>
+				{isConnected ? (
+					<span>
+						<img
+							src="/defi_pfp.jpg"
+							alt=""
+						/>
+
+						<span>{truncateWalletAddress(address!)}</span>
+					</span>
+				) : (
+					"Connect"
 				)}
-			</ConnectKitButton.Custom> */}
+			</li>
 		</>
 	);
 }
 
 export const PrimaryNav = () => {
 	const router = useRouter();
-	// const { address, isConnected } = useAccount();
 
-	// const baseAPIURL = process.env.NEXT_PUBLIC_API_URL;
+	const { setUserName, setUserTitle } = useUserStore();
 
-	// useEffect(() => {
-	// 	isConnected &&
-	// 		(async () => {
-	// 			const { exists } = (
-	// 				await axios.get(`${baseAPIURL}checkUser/${address}`)
-	// 			).data;
+	const { address, isConnected } = useWeb3ModalAccount();
 
-	// 			// !exists && router.replace("/profile/edit");
-	// 		})();
-	// }, [isConnected]);
+	const baseApiUrl = process.env.NEXT_PUBLIC_API_URL;
+
+	const [loading, setLoading] = useState<boolean>(true);
+	useEffect(() => {
+		isConnected &&
+			(async () => {
+				const { exists } = (
+					await axios.get(`${baseApiUrl}checkUser/${address}`)
+				).data;
+
+				!exists && router.replace("/profile/edit");
+				exists && router.push("/profile");
+
+				const response = (
+					await axios.get(
+						`${baseApiUrl}getUserProfileAddress/${address}`,
+					)
+				).data;
+
+				setUserName(response.bio.name);
+				setUserTitle(response.bio.profession);
+			})();
+	}, [isConnected, address, baseApiUrl, router, setUserName, setUserTitle]);
 
 	return (
 		<nav className="primaryNav">

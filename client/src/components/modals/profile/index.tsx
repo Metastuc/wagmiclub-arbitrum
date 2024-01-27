@@ -1,8 +1,9 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useUserStore } from "@/hooks";
 import { useDisconnect } from "@web3modal/ethers/react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import "./index.scss";
 
 const Profile = ({ onClose }: { onClose: () => void }) => {
@@ -10,6 +11,8 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
 
 	const pathname = usePathname();
 	const { disconnect } = useDisconnect();
+
+	const { userName: user, userTitle: title } = useUserStore();
 
 	let links: { name: string; href: string }[] = [];
 
@@ -106,8 +109,10 @@ const Profile = ({ onClose }: { onClose: () => void }) => {
 						/>
 					</span>
 					<div className={`${group}__displayNames`}>
-						<span>Sabinus</span>
-						<span>Investor</span>
+						<>
+							<span>{user}</span>
+							<span>{title}</span>
+						</>
 					</div>
 				</div>
 

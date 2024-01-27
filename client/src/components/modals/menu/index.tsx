@@ -14,6 +14,7 @@ const MenuModal = ({ onClose }: { onClose: () => void }) => {
 	return (
 		<div className="content__wrapper">
 			<ul className="navigation">
+				{!isConnected && <li onClick={() => open()}>Connect</li>}
 				{isConnected && (
 					<>
 						<li
@@ -45,8 +46,6 @@ const MenuModal = ({ onClose }: { onClose: () => void }) => {
 						</li>
 					);
 				})}
-
-				{!isConnected && <li onClick={() => open()}>Login</li>}
 			</ul>
 
 			{/* Search input */}
