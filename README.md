@@ -19,13 +19,17 @@ LinkedIn-like dApp that combines the benefits of blockchain technology with prof
 offering enhanced privacy, control, and trust.
 
 > ## Solution
+A decentralized application (dApp) where professionals build their reputation and identity onchain ,
+eliminating fake identities by professionals since all profiles, job history and connections  are verifiable while
+maintaining privacy of personal informations.
 
-A decentralized application (dApp) that combines the best features 
-of LinkedIn and blockchain technology. It provides professionals with a secure and 
-transparent platform to network, build a verifiable reputation.
+
 Professionals need a system to independently showcase their qualifications, experience, genuine
 connections, proof of previous work, transparent credential verification order than traditional networking  
 platforms that lack transparency and trust with limited control over personal data.
+
+Seamless verification - recruiters can easily verify the authenticity of a candidates credentials by directly
+accessing their profile medals and badges onchain.
 
 > ## Technologies Used
 
@@ -40,9 +44,9 @@ platforms that lack transparency and trust with limited control over personal da
 
     The contracts can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/tree/main/contracts)
 
-    -   **Badges** This is soul bound token (SBT) implemented as an VRC725 contract for issuing badges to users, each badge is represented by a new tokenId. The Badge contract can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/contracts/contracts/Badge.sol). The deployed address of the Badge contract on Viction testnet is 0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3
+    -   **Badges** This is soul bound token (SBT) each badge is represented by a new tokenId. The Badge contract can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/contracts/contracts/Badge.sol). The deployed address of the Badge contract on Viction testnet is 0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3
     -   **Medals** The medals contract implements the ERC1155 contract standard and is also a soul bound token (SBT), this contract is used to award medal tokens to eligible participants using the batchMint function which only the creator of the medal can mint and the input is gotten from the backend to make sure only the eligible candidates get the token minted to them. The Medal contract can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/contracts/contracts/Medal.sol). The deployed address of the Badge contract on Viction testnet is 0xe18A8E1072e932841573d5716b69F9121BE8E69C
-    -   **How to run** clone the repo, enter the contracts folder and download the npm packages by running:
+    -   **How to run** clone the repo, enter the contracts folder and download the npm packages by running: 
     ```bash
     npm install
     # or
