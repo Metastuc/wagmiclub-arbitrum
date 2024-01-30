@@ -5,8 +5,8 @@ import { Details, Socials } from "@/components";
 import { signUp } from "@/utils/app.mjs";
 import { useWeb3ModalAccount } from "@web3modal/ethers/react";
 import { useFormik } from "formik";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-
 import "./index.scss";
 
 interface FormValues {
@@ -23,6 +23,7 @@ interface FormValues {
 
 export const FormField = ({ activeTab }: { activeTab: string }) => {
 	const { address, isConnected } = useWeb3ModalAccount();
+	const router = useRouter();
 
 	const initialValues = {
 		account: activeTab,
@@ -45,6 +46,7 @@ export const FormField = ({ activeTab }: { activeTab: string }) => {
 		handleChange,
 		handleSubmit,
 		setFieldValue,
+		isSubmitting,
 	} = useFormik({
 		validationSchema: EDIT_SCHEMA, // Form validation schema
 		initialValues, // Initial form values
@@ -52,18 +54,24 @@ export const FormField = ({ activeTab }: { activeTab: string }) => {
 			try {
 				await signUp(values, address);
 				console.log(values);
-				
+				setTimeout(handleRedirect, 500);
 			} catch (error) {
 				console.log(error);
 			}
 		},
 	});
 
-	console.log({ address, isConnected });
+	console.log({ isSubmitting });
 
 	useEffect(() => {
 		setFieldValue("account", activeTab);
 	}, [activeTab]);
+
+	function handleRedirect() {
+		if (isConnected) {
+			router.push("/profile");
+		}
+	}
 
 	return (
 		<form
@@ -97,6 +105,7 @@ export const FormField = ({ activeTab }: { activeTab: string }) => {
 				<button
 					type="submit"
 					className="form__button-wrapper"
+					disabled={isSubmitting}
 				>
 					<span className="form__button-label">Save</span>
 				</button>

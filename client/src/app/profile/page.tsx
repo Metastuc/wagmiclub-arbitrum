@@ -96,16 +96,18 @@ const Profile = () => {
 				!exists && router.replace("/profile/edit");
 
 				// fetch user profile
-				const response = (
-					await axios.get(
-						`${baseApiUrl}getUserProfileAddress/${address}`,
-					)
-				).data;
+				const response =
+					exists &&
+					(
+						await axios.get(
+							`${baseApiUrl}getUserProfileAddress/${address}`,
+						)
+					).data;
 
-				setProfile(response);
+				exists && setProfile(response);
 				setLoading(false);
-				setUserName(response.bio.name);
-				setUserTitle(response.bio.profession);
+				exists && setUserName(response.bio.name);
+				exists && setUserTitle(response.bio.profession);
 			})();
 	}, [isConnected, address, router, baseApiUrl, setUserName, setUserTitle]);
 

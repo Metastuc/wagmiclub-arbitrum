@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { Back } from "@/assets/icons";
+import { EditTabs } from "@/components/";
 import { useScrollReset, useTabSwitcher } from "@/hooks";
 import { FormField as EditForms } from "@/views";
-import { EditTabs } from "@/components/";
-import { Back } from "@/assets/icons";
+import { useWeb3ModalAccount } from "@web3modal/ethers/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useLayoutEffect } from "react";
 import "./page.scss";
 
 const Edit = () => {
@@ -15,10 +16,22 @@ const Edit = () => {
 	useEffect(() => {
 		const nav = document.querySelector("nav");
 		nav?.setAttribute("style", "display: none;");
+
+		return () => {
+			nav?.removeAttribute("style");
+		};
 	}, []);
 
 	const { activeTab, handleTabClick, tabIsActive } =
 		useTabSwitcher("personal");
+
+	const { isConnected } = useWeb3ModalAccount();
+
+	useLayoutEffect(() => {
+		if (!isConnected) {
+			router.replace("/profile");
+		}
+	});
 
 	return (
 		<>
