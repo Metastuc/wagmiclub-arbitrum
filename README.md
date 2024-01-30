@@ -53,10 +53,10 @@ top talents by referring to the leaderboard which ranks  profiles based on on-ch
 
 -   ### **Solidity smart contracts**
 
-    The contracts can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/tree/main/contracts)
+    The contracts can be found [here](https://github.com/Metastuc/wagmiclub-arbitrum/tree/main/contracts)
 
-    -   **Badges** This is soul bound token (SBT) each badge is represented by a new tokenId. The Badge contract can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/contracts/contracts/Badge.sol). The deployed address of the Badge contract on Viction testnet is 0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3
-    -   **Medals** The medals contract implements the ERC1155 contract standard and is also a soul bound token (SBT), this contract is used to award medal tokens to eligible participants using the batchMint function which only the creator of the medal can mint and the input is gotten from the backend to make sure only the eligible candidates get the token minted to them. The Medal contract can be found [here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/contracts/contracts/Medal.sol). The deployed address of the Badge contract on Viction testnet is 0xe18A8E1072e932841573d5716b69F9121BE8E69C
+    -   **Badges** This is soul bound token (SBT) each badge is represented by a new tokenId. The Badge contract can be found [here](https://github.com/Metastuc/wagmiclub-arbitrum/blob/main/contracts/contracts/Badge.sol). The deployed address of the Badge contract on Viction testnet is 0x9Fc3168ee0Cf90aaBF485BF24c337da9922bB4a3
+    -   **Medals** The medals contract implements the ERC1155 contract standard and is also a soul bound token (SBT), this contract is used to award medal tokens to eligible participants using the batchMint function which only the creator of the medal can mint and the input is gotten from the backend to make sure only the eligible candidates get the token minted to them. The Medal contract can be found [here](https://github.com/Metastuc/wagmiclub-arbitrum/blob/main/contracts/contracts/Medal.sol). The deployed address of the Badge contract on Viction testnet is 0xe18A8E1072e932841573d5716b69F9121BE8E69C
     -   **How to run** clone the repo, enter the contracts folder and download the npm packages by running: 
     ```bash
     npm install
@@ -75,4 +75,4 @@ top talents by referring to the leaderboard which ranks  profiles based on on-ch
     
 -   ### **Covalent-API**
 
-    -   The Covalent API was used to fetch users onchain metrics like number of NFTs an account has and how much tokens an address has been transferred to an account example usage can be found[here](https://github.com/Metastuc/wagmiclub-2.0-/blob/main/server/index.js) and the endpoint that most utilized this is the getEligible and getEligibleArray endpoints.
+    -   The Covalent API was used to fetch users onchain metrics like number of NFTs an account has and how much tokens an address has been transferred to an account example usage can be found[here](https://github.com/Metastuc/wagmiclub-arbitrum/blob/main/server/index.js) and the endpoint that most utilized this is the getEligible and getEligibleArray endpoints.
