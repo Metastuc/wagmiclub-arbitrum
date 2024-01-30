@@ -4,7 +4,7 @@
 
 -   [Problem Statement](#Problem-statement)
 -   [Solution](#Solution)
--   [Our product] (#Our product)
+-   [Our product](#Our product) 
 -   [Technologies Used](#technologies-used)
     -   [Smart Contract](#solidity-smart-contracts-Arbitrum chain)
     -   [Backend](#backend)
