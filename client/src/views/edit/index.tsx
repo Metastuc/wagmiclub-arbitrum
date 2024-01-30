@@ -61,10 +61,11 @@ export const FormField = ({ activeTab }: { activeTab: string }) => {
 		},
 	});
 
-	console.log({ isSubmitting });
+	console.log({ isSubmitting, isConnected });
 
 	useEffect(() => {
 		setFieldValue("account", activeTab);
+		alert({ address });
 	}, [activeTab]);
 
 	function handleRedirect() {
