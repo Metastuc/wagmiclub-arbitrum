@@ -1,16 +1,17 @@
-# wagmiclub-constellation hack
+
 
 > ## Table of Contents
 
 -   [Problem Statement](#Problem-statement)
 -   [Solution](#Solution)
 -   [Technologies Used](#technologies-used)
-    -   [Smart Contract](#solidity-smart-contracts)
+    -   [Smart Contract](#solidity-smart-contracts-Arbitrum chain)
     -   [Backend](#backend)
     -   [Covalent API](#Covalent-API)
 #
 
 > ## Problem-statement
+
 
 Existing decentralized identity solutions lack a dedicated platform for professionals to network 
 and build their reputation in a secure and transparent manner. This creates a need for a web3 
