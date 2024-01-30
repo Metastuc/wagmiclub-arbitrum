@@ -116,7 +116,7 @@ const Profile = () => {
 			<section className={`${group}__wrapper`}>
 				{/* Conditional rendering based on loading state */}
 				{loading && (
-					<>
+					<div className={`${group}__loading`}>
 						<LoadingCloud />
 						{!isConnected && (
 							<p>
@@ -135,7 +135,7 @@ const Profile = () => {
 								<br />
 							</p>
 						)}
-					</>
+					</div>
 				)}
 
 				{/* Conditional rendering based on error state */}

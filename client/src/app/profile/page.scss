@@ -27,15 +27,23 @@
             background-color: inherit;
         }
 
+        >* {
+            width: 100%;
+        }
+
         p {
             text-align: center;
         }
     }
 
     &__socials {
-        border: 1px solid rebeccapurple;
+        // border: 1px solid rebeccapurple;
         @include flex;
         gap: 2rem;
         margin-top: 3rem;
+    }
+
+    &__loading {
+        @include flex($d:column);
     }
 }
