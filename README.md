@@ -4,6 +4,7 @@
 
 -   [Problem Statement](#Problem-statement)
 -   [Solution](#Solution)
+-   [Our product]
 -   [Technologies Used](#technologies-used)
     -   [Smart Contract](#solidity-smart-contracts-Arbitrum chain)
     -   [Backend](#backend)
@@ -30,6 +31,16 @@ platforms that lack transparency and trust with limited control over personal da
 
 Seamless verification - recruiters can easily verify the authenticity of a candidates credentials by directly
 accessing their profile medals and badges onchain.
+
+> ## Our Product
+Wagmiclub’ is a decentralized platform providing users with decentralized and self-soverign identity management through SBT NFTS, professionals
+have full control over their personal information(work history and achivements)  which are securely stored on the blockchain,making them tamper-proof
+and verifiable.
+Our dapp provides super user-friendly interface that anyone can easily navigate.  Professionals can effortlessly create a profile(identity), network,
+earn trustscores, reputation badge and medals.
+  
+Recruiters will have the opportunity to explore a diverse pool of  professionals through our platform marketplace . We made it easy to identify 
+top talents by referring to the leaderboard which ranks  profiles based on on-chain badge, medals and trustscore. 
 
 > ## Technologies Used
 
